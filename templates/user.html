@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}
+Item Catalog -- Items for user {{  user.username }}
+{% endblock %}
+    
+{% block content %}
+    <article>
+        <header>
+            <h1>Items for user {{  user.username }}</h1>
+        </header>
+        <section>
+        <h2>Recently Added Items</h2>
+            {% if new_items %}
+                        <ul>
+                        {% for new_item in new_items %}
+                            <li>{{ new_item.user.username }} added {{ new_item.title }} for ${{ new_item.price }}
+                            <br> {{  new_item.description }}</li>
+                        {% endfor %}
+                        </ul>
+                    {% else %}
+                        This user has not added any items yet.
+                     {% endif %}
+        </section>
+    </article>
+{% endblock %}
